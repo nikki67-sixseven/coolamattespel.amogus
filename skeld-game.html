@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+margin:0;
+background:black;
+overflow:hidden;
+font-family:Arial;
+}
+
+#map{
+width:100vw;
+height:100vh;
+background:url("https://i.imgur.com/2DhmtJ4.jpg") center/cover;
+position:relative;
+}
+
+.player{
+width:50px;
+position:absolute;
+}
+
+.crewmate{
+width:50px;
+position:absolute;
+cursor:pointer;
+}
+
+.dead{
+transform:rotate(90deg);
+filter:grayscale(100%);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="map">
+
+<img id="player" class="player"
+src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png"
+style="left:300px;top:300px">
+
+<img id="enemy" class="crewmate"
+src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png"
+style="left:600px;top:200px">
+
+</div>
+
+<script>
+
+let player=document.getElementById("player")
+let enemy=document.getElementById("enemy")
+
+let x=300
+let y=300
+
+document.addEventListener("keydown",e=>{
+
+if(e.key=="ArrowUp") y-=20
+if(e.key=="ArrowDown") y+=20
+if(e.key=="ArrowLeft") x-=20
+if(e.key=="ArrowRight") x+=20
+
+player.style.left=x+"px"
+player.style.top=y+"px"
+
+checkKill()
+
+})
+
+function checkKill(){
+
+let px=x
+let py=y
+
+let ex=enemy.offsetLeft
+let ey=enemy.offsetTop
+
+let distance=Math.hypot(px-ex,py-ey)
+
+if(distance<80){
+
+enemy.classList.add("dead")
+
+setTimeout(()=>{
+enemy.remove()
+alert("Crewmate eliminated!")
+},500)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
