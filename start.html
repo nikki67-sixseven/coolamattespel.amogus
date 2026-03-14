@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+overflow:hidden;
+}
+
+h1{
+font-size:60px;
+margin-top:200px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{color:white}
+to{color:red}
+}
+
+button{
+padding:20px 40px;
+font-size:25px;
+background:red;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:white;
+color:black;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>AMONG GAME HUB</h1>
+
+<button onclick="start()">START GAME</button>
+
+<script>
+
+function start(){
+window.location="index.html"
+}
+
+</script>
+
+</body>
+</html>
