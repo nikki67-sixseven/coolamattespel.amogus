@@ -42,3 +42,176 @@ width="650"
 height="500"
 style="border:none;">
 </iframe>
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+background:black;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(5,150px);
+gap:15px;
+justify-content:center;
+margin-top:40px;
+}
+
+.game{
+background:#111;
+padding:20px;
+border-radius:10px;
+cursor:pointer;
+}
+
+canvas{
+background:#111;
+border:2px solid red;
+margin-top:30px;
+}
+
+.crewmate{
+position:absolute;
+width:60px;
+animation:move 15s linear infinite;
+}
+
+@keyframes move{
+0%{left:-80px}
+100%{left:110%}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>GAME HUB</h1>
+
+<button onclick="meeting()">🚨 Emergency Meeting</button>
+
+<div class="menu">
+
+<div class="game" onclick="startGame(1)">Click Game</div>
+<div class="game" onclick="startGame(2)">Dodge</div>
+<div class="game" onclick="startGame(3)">Shooter</div>
+<div class="game" onclick="startGame(4)">Reaction</div>
+<div class="game" onclick="startGame(5)">Runner</div>
+
+<div class="game" onclick="startGame(6)">Catch</div>
+<div class="game" onclick="startGame(7)">Memory</div>
+<div class="game" onclick="startGame(8)">Speed Click</div>
+<div class="game" onclick="startGame(9)">Target</div>
+<div class="game" onclick="startGame(10)">Survival</div>
+
+</div>
+
+<canvas id="game" width="600" height="400"></canvas>
+
+<img class="crewmate" src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png" style="top:20%">
+<img class="crewmate" src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png" style="top:70%">
+
+<script>
+
+let canvas=document.getElementById("game")
+let ctx=canvas.getContext("2d")
+
+let game=0
+let player={x:280,y:350}
+let enemy={x:200,y:50}
+let score=0
+
+function meeting(){
+
+alert("Emergency Meeting! Who is the impostor?")
+
+}
+
+function startGame(num){
+
+game=num
+score=0
+
+}
+
+document.addEventListener("keydown",e=>{
+
+if(e.key=="ArrowLeft") player.x-=20
+if(e.key=="ArrowRight") player.x+=20
+
+})
+
+document.addEventListener("click",()=>{
+
+if(game==1){
+score++
+}
+
+})
+
+function update(){
+
+if(game==2){
+
+enemy.y+=5
+
+if(enemy.y>400){
+enemy.y=0
+enemy.x=Math.random()*550
+}
+
+}
+
+if(game==3){
+
+enemy.x+=Math.random()*10-5
+enemy.y+=Math.random()*10-5
+
+}
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,600,400)
+
+if(game==1){
+
+ctx.fillStyle="white"
+ctx.fillText("Clicks: "+score,250,200)
+
+}
+
+if(game>=2){
+
+ctx.fillStyle="cyan"
+ctx.fillRect(player.x,player.y,40,40)
+
+ctx.fillStyle="red"
+ctx.fillRect(enemy.x,enemy.y,40,40)
+
+}
+
+}
+
+function loop(){
+
+update()
+draw()
+requestAnimationFrame(loop)
+
+}
+
+loop()
+
+</script>
+
+</body>
+</html>
