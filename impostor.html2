@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body style="background:black;color:red;text-align:center;font-family:Arial">
+
+<h1>IMPOSTOR MODE</h1>
+
+<p>You are the impostor.</p>
+
+<button onclick="kill()">Eliminate Crewmate</button>
+
+<button onclick="sabotage()">Sabotage Reactor</button>
+
+<button onclick="meeting()">Call Emergency Meeting</button>
+
+<button onclick="back()">Return</button>
+
+<script>
+
+function kill(){
+
+alert("Crewmate eliminated")
+
+}
+
+function sabotage(){
+
+alert("Reactor meltdown started!")
+
+}
+
+function meeting(){
+
+alert("Emergency meeting called!")
+
+}
+
+function back(){
+
+window.location="index.html"
+
+}
+
+</script>
+
+</body>
+</html>
