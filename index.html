@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Among Us Game Hub</title>
+<title>Among Game Hub</title>
 
 <style>
 
@@ -10,31 +10,53 @@ background:black;
 color:white;
 font-family:Arial;
 text-align:center;
-background-image:url("https://wallpapercave.com/wp/wp7413891.jpg");
-background-size:cover;
+overflow:hidden;
 }
 
 h1{
 font-size:50px;
+margin-top:40px;
 }
 
 .menu{
-margin:20px;
+display:grid;
+grid-template-columns:repeat(5,150px);
+gap:20px;
+justify-content:center;
+margin-top:50px;
 }
 
-a{
-display:inline-block;
-padding:15px 30px;
-margin:10px;
+.game{
 background:#111;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-size:20px;
+padding:20px;
+border-radius:15px;
+cursor:pointer;
+transition:0.3s;
 }
 
-a:hover{
+.game:hover{
 background:red;
+transform:scale(1.1);
+}
+
+.crewmate{
+position:absolute;
+width:60px;
+animation:move 20s linear infinite;
+}
+
+@keyframes move{
+0%{left:-100px}
+100%{left:110%}
+}
+
+.secret{
+position:fixed;
+bottom:10px;
+right:10px;
+background:#000;
+color:#000;
+border:none;
 }
 
 </style>
@@ -43,19 +65,40 @@ background:red;
 
 <body>
 
-<h1>AMONG US GAME HUB</h1>
+<h1>AMONG GAME HUB</h1>
 
 <div class="menu">
 
-<a href="games.html">Mini Games</a>
+<div class="game" onclick="openGame(1)">Game 1</div>
+<div class="game" onclick="openGame(2)">Game 2</div>
+<div class="game" onclick="openGame(3)">Game 3</div>
+<div class="game" onclick="openGame(4)">Game 4</div>
+<div class="game" onclick="openGame(5)">Game 5</div>
 
-<a href="about.html">About</a>
-
-<a href="secret.html">Secret Page</a>
+<div class="game" onclick="openGame(6)">Game 6</div>
+<div class="game" onclick="openGame(7)">Game 7</div>
+<div class="game" onclick="openGame(8)">Game 8</div>
+<div class="game" onclick="openGame(9)">Game 9</div>
+<div class="game" onclick="openGame(10)">Game 10</div>
 
 </div>
 
-<p>Welcome to the Among Us game website.</p>
+<img class="crewmate" src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png" style="top:20%">
+<img class="crewmate" src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png" style="top:60%">
+
+<button class="secret" onclick="secret()">.</button>
+
+<script>
+
+function openGame(num){
+window.location.href="game"+num+".html";
+}
+
+function secret(){
+window.location.href="impostor.html";
+}
+
+</script>
 
 </body>
 </html>
