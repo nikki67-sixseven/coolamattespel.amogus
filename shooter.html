@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<body style="background:black;text-align:center">
+
+<canvas id="game" width="600" height="400"></canvas>
+
+<script>
+
+let canvas=document.getElementById("game")
+let ctx=canvas.getContext("2d")
+
+let enemy={x:100,y:100}
+let bullets=[]
+
+document.addEventListener("click",shoot)
+
+function shoot(e){
+
+bullets.push({
+x:300,
+y:350
+})
+
+}
+
+function update(){
+
+enemy.x+=Math.random()*10-5
+enemy.y+=Math.random()*10-5
+
+bullets.forEach(b=>{
+b.y-=10
+
+if(
+b.x>enemy.x &&
+b.x<enemy.x+40 &&
+b.y>enemy.y &&
+b.y<enemy.y+40
+){
+alert("Impostor eliminated")
+enemy.x=Math.random()*500
+enemy.y=Math.random()*300
+}
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,600,400)
+
+ctx.fillStyle="red"
+ctx.fillRect(enemy.x,enemy.y,40,40)
+
+ctx.fillStyle="cyan"
+
+bullets.forEach(b=>{
+ctx.fillRect(b.x,b.y,5,10)
+})
+
+}
+
+function loop(){
+
+update()
+draw()
+requestAnimationFrame(loop)
+
+}
+
+loop()
+
+</script>
+
+</body>
+</html>
