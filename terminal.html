@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body style="background:black;color:#00ff00;font-family:monospace">
+
+<h2>ADMIN TERMINAL</h2>
+
+<div id="terminal"></div>
+
+<script>
+
+let lines=[
+"Connecting to Skeld...",
+"Scanning crew database...",
+"Detecting impostor...",
+"Access granted.",
+"Admin privileges unlocked."
+]
+
+let i=0
+
+function type(){
+
+if(i<lines.length){
+
+let p=document.createElement("p")
+p.innerText=lines[i]
+
+document.getElementById("terminal").appendChild(p)
+
+i++
+
+setTimeout(type,1000)
+
+}
+
+}
+
+type()
+
+</script>
+
+</body>
+</html>
