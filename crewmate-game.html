@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+overflow:hidden;
+}
+
+.crewmate{
+position:absolute;
+width:60px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.dead{
+filter:grayscale(100%);
+transform:rotate(90deg);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Impostor Mode</h1>
+<p>Click crewmates to eliminate them</p>
+
+<script>
+
+let crewmates=[]
+
+function spawn(){
+
+let img=document.createElement("img")
+
+img.src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_character.png"
+
+img.className="crewmate"
+
+img.style.left=Math.random()*90+"vw"
+img.style.top=Math.random()*80+"vh"
+
+img.onclick=function(){
+
+img.classList.add("dead")
+
+setTimeout(()=>{
+img.remove()
+},1000)
+
+}
+
+document.body.appendChild(img)
+
+crewmates.push(img)
+
+}
+
+function move(){
+
+crewmates.forEach(c=>{
+
+let x=parseFloat(c.style.left)
+let y=parseFloat(c.style.top)
+
+x+=Math.random()*4-2
+y+=Math.random()*4-2
+
+c.style.left=x+"vw"
+c.style.top=y+"vh"
+
+})
+
+}
+
+setInterval(spawn,2000)
+setInterval(move,100)
+
+</script>
+
+</body>
+</html>
