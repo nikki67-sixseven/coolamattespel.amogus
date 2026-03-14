@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crewmate Dodge</title>
+
+<style>
+body{
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+canvas{
+background:#111;
+border:2px solid red;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Crewmate Dodge</h1>
+<p>Avoid the impostor!</p>
+
+<canvas id="game" width="600" height="400"></canvas>
+
+<script>
+
+let canvas = document.getElementById("game")
+let ctx = canvas.getContext("2d")
+
+let player = {x:280,y:350,w:40,h:40}
+let enemy = {x:Math.random()*560,y:0,w:40,h:40}
+
+document.addEventListener("keydown",move)
+
+function move(e){
+if(e.key=="ArrowLeft") player.x -= 20
+if(e.key=="ArrowRight") player.x += 20
+}
+
+function update(){
+
+enemy.y += 5
+
+if(enemy.y > 400){
+enemy.y = 0
+enemy.x = Math.random()*560
+}
+
+if(
+player.x < enemy.x + enemy.w &&
+player.x + player.w > enemy.x &&
+player.y < enemy.y + enemy.h &&
+player.h + player.y > enemy.y
+){
+alert("Impostor got you!")
+enemy.y = 0
+}
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,600,400)
+
+ctx.fillStyle="cyan"
+ctx.fillRect(player.x,player.y,player.w,player.h)
+
+ctx.fillStyle="red"
+ctx.fillRect(enemy.x,enemy.y,enemy.w,enemy.h)
+
+}
+
+function gameLoop(){
+update()
+draw()
+requestAnimationFrame(gameLoop)
+}
+
+gameLoop()
+
+</script>
+
+</body>
+</html>
